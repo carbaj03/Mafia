@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.acv.mafia.MafiaApplication;
 import com.acv.mafia.R;
@@ -15,6 +17,7 @@ import com.acv.mafia.view.fragment.MemberDetailFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MemberDetailActivity extends BaseActivity  {
@@ -22,6 +25,7 @@ public class MemberDetailActivity extends BaseActivity  {
     private static final String EXTRA_MEMBER_ID = "MEMBER_ID";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.fab) FloatingActionButton fab;
 
     private int memberId;
 
@@ -83,10 +87,16 @@ public class MemberDetailActivity extends BaseActivity  {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 
     public void setTitle(String title){
         toolbar.setTitle(title);
+    }
+
+    @OnClick(R.id.fab)
+    public void onClickFab(){
+        Toast.makeText(this, "Add subordinate", Toast.LENGTH_SHORT).show();
     }
 }

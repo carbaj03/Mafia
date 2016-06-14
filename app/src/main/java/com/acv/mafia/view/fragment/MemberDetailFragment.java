@@ -72,7 +72,7 @@ public class MemberDetailFragment extends BaseFragment implements MemberDetailCo
         if (member != null) {
             ((MemberDetailActivity)getActivity()).setTitle(member.getName());
             tvAlias.setText(member.getAlias());
-            tvRank.setText(member.getRank().getLevelToString());
+            tvRank.setText(member.getRank().getName());
             tvRankDescription.setText(member.getRank().getDescription());
         }
     }

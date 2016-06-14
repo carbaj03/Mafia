@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.acv.mafia.MafiaApplication;
 import com.acv.mafia.R;
 import com.acv.mafia.injection.module.HomeActivityModule;
-import com.acv.mafia.navigation.Navigator;
-import com.acv.mafia.view.ItemClickListener;
+import com.acv.mafia.view.adapter.PagerAdapter;
 import com.acv.mafia.view.fragment.MemberListFragment;
 
 import javax.inject.Inject;
@@ -21,7 +21,11 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity {
 
+    @Inject PagerAdapter pagerAdapter;
+
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.tabs) TabLayout tabLayout;
+    @BindView(R.id.container) ViewPager viewPager;
 
     public static void launch(Activity activity) {
         activity.startActivity(newInstance(activity));
@@ -35,9 +39,14 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         configToolbar();
-        if (savedInstanceState == null) {
-            addFragment(R.id.container, MemberListFragment.newInstance());
-        }
+        setViewPager();
+    }
+
+    private void setViewPager(){
+        pagerAdapter.addFragment(MemberListFragment.newInstance(), getString(R.string.members));
+        pagerAdapter.addFragment(MemberListFragment.newInstance(), getString(R.string.highlight));
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -62,8 +71,5 @@ public class HomeActivity extends BaseActivity {
     private void configToolbar() {
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
     }
 }

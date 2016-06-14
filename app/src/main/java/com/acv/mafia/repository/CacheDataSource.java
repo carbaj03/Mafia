@@ -20,7 +20,7 @@ public class CacheDataSource implements MafiaDataSource {
     private List<Member> members = new ArrayList<>();
 
     public CacheDataSource() {
-
+        createMembers();
     }
 
     private List<Member> createMembers() {
@@ -79,12 +79,12 @@ public class CacheDataSource implements MafiaDataSource {
 
     @Override
     public Observable<List<Member>> getMembers() {
-        return Observable.from(createMembers()).toList();
+        return Observable.from(members).toList();
     }
 
     @Override
     public Observable<Member> getMember(int memberId) {
-        return Observable.from(createMembers())
+        return Observable.from(members)
                 .filter(member -> member.getId() == memberId);
     }
 }
