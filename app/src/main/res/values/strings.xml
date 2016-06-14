@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Mafia</string>
+
+    <string name="btn_retry">Retry</string>
+
+    <!-- TITLE -->
+    <string name="title_ac_member_detail">Member Detail</string>
+    <string name="title_ac_member_list">Member List</string>
+
+    <!-- EXCEPTIONS -->
+    <string name="exception_message_generic">There was an application error</string>
+
+    <string name="lbl_alias">Alias:</string>
+    <string name="lbl_rank">Rank:</string>
+    <string name="lbl_description">Description:</string>
+    <string name="members">MEMBERS</string>
+    <string name="highlight">HIGHLIGHT</string>
+
+</resources>
